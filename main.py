@@ -5,6 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 if __name__ == "__main__":
-    HOST = os.getenv("DB_HOST")
-    PORT = os.getenv("DB_PORT")
+    HOST = os.getenv("FASTAPI_HOST")
+    PORT = os.getenv("FASTAPI_PORT")
     uvicorn.run("app.app:app", host= HOST , port= int(PORT) , reload= True)

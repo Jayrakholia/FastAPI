@@ -2,6 +2,7 @@ from app.database.database import Base
 from sqlalchemy import Column, String, Date
 from app.utils.model import Commonmodel
 import uuid
+from sqlalchemy.orm import relationship
 
 def generate_uuid():
     return str(uuid.uuid4())
@@ -13,3 +14,4 @@ class User (Base, Commonmodel):
     name = Column(String)
     birth_date = Column(Date)
     gender = Column(String)
+    

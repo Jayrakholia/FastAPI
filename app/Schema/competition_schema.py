@@ -27,12 +27,10 @@ class CreateCompetition(BaseModel):
 
 #for update
 class updateCompetition(BaseModel):
-    id: Optional[str]
     name: Optional[str]
     status: Optional[str]
     description: Optional[str]
-    user_id: Optional[str]
-
+    user_id : Optional[str]
     class Config:
         orm_mode = True
 

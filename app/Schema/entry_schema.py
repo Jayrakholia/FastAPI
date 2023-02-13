@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from datetime import date
-from typing import Optional
+from typing import Optional, Union
 
 
 #demo for user
@@ -32,7 +32,7 @@ class CreateEntry(BaseModel):
         orm_mode = True
 
 #for update
-class CreateEntry(BaseModel):
+class updateEntry(BaseModel):
     id: Optional[str] 
     title: Optional[str]
     topic: Optional[str]
@@ -42,3 +42,19 @@ class CreateEntry(BaseModel):
 
     class Config:
         orm_mode = True
+
+#for response
+class DisplayUsers(BaseModel):
+    id: Optional[str]
+    name: Optional[str]
+    birth_date: Optional[date]
+    gender: Optional[str]
+    
+    #call schema for object (middle)
+    class Config:
+        orm_mode = True
+
+class Error(BaseModel):
+    error:str
+
+Response = Union[DisplayUsers,Error]

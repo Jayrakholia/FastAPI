@@ -22,7 +22,7 @@ PASSWORD = os.getenv("DB_PASSWORD")
 HOST = os.getenv("DB_HOST")
 PORT = os.getenv("DB_PORT")
 DATABASE = os.getenv("DB_DATABASE")
-SQLALCHEMY_URL = f"{DRIVER}://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
+SQLALCHEMY_URL = f"{DRIVER}://{USERNAME}:{PASSWORD}@{HOST}:{int(PORT)}/{DATABASE}"
 config.set_section_option(section, "sqlalchemy.url", SQLALCHEMY_URL)
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

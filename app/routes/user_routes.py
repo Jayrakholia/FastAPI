@@ -4,20 +4,20 @@ from app.Schema.user_schema import *
 from app.Model.user_model import User
 from sqlalchemy.orm import Session
 from typing import List
-from app.utils.model import Commonmodel
+# from app.utils.model import Commonmodel
 
 userdata = APIRouter()
 
 
 
 #get user details
-@userdata.get("/user/",tags=['users'],response_model=List[DisplayUsers])
+@userdata.get("/user/",response_model=List[DisplayUsers])
 def AllUser(db:Session = Depends(get_db)):
     db_users = db.query(User).all()
     return db_users
 
 #create new user
-@userdata.post("/user/",response_model=DisplayUsers)
+@userdata.post("/adduser/",response_model=DisplayUsers)
 def add_users(request:CreateUsers, db:Session=Depends(get_db)):
     new_users = User(name = request.name, birth_date = request.birth_date, gender = request.gender)
     db.add(new_users)

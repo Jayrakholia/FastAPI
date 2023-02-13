@@ -14,7 +14,7 @@ HOST = os.getenv("DB_HOST")
 PORT = os.getenv("DB_PORT")
 DATABASE = os.getenv("DB_DATABASE")
 
-SQLALCHEMY_DATABASE_URL = f"{DRIVER}://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
+SQLALCHEMY_DATABASE_URL = f"{DRIVER}://{USERNAME}:{PASSWORD}@{HOST}:{int(PORT)}/{DATABASE}"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

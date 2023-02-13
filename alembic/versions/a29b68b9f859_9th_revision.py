@@ -1,8 +1,8 @@
-"""third revision
+"""9th revision
 
-Revision ID: 0064da1b5933
+Revision ID: a29b68b9f859
 Revises: 
-Create Date: 2023-02-08 12:52:21.748492
+Create Date: 2023-02-11 16:22:38.481445
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0064da1b5933'
+revision = 'a29b68b9f859'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -39,7 +39,7 @@ def upgrade() -> None:
     sa.Column('is_delete', sa.Boolean(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('update_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['user_id'], ['user_table.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['user_table.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('entry_table',
@@ -52,7 +52,7 @@ def upgrade() -> None:
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('competition_id', sa.String(), nullable=True),
-    sa.ForeignKeyConstraint(['competition_id'], ['competition_table.id'], ),
+    sa.ForeignKeyConstraint(['competition_id'], ['competition_table.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

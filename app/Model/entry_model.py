@@ -3,6 +3,7 @@ from sqlalchemy import Column, Boolean, String, ForeignKey, DateTime
 from datetime import datetime
 from app.Model.competition_model import Competition
 import uuid
+from sqlalchemy.orm import relationship
 
 def generate_uuid():
     return str(uuid.uuid4())

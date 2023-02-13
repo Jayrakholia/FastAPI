@@ -17,7 +17,7 @@ def AllUser(db:Session = Depends(get_db)):
 
 #create competition details
 @competition.post("/competitionadd/",response_model= CreateCompetition)
-def AddCompetition(request:CreateCompetition, db:Session = Depends(get_db)):
+def AddCompetition(request:updateCompetition, db:Session = Depends(get_db)):
 
     new_competition = Competition(name = request.name, description = request.description, user_id = request.user_id, status = request.status)
     db.add(new_competition)
@@ -26,12 +26,16 @@ def AddCompetition(request:CreateCompetition, db:Session = Depends(get_db)):
     return new_competition
 
 #update competition details
-@competition.put("/competitionupdate/{id}",response_model=CreateCompetition)
+@competition.put("/competitionupdate/{id}", response_model=CreateCompetition)
 def UpdateCompetition(id:str, request: updateCompetition, db:Session = Depends(get_db)):
-    db.query(Competition).filter(Competition.id == id).update(request.dict(exclude_unset=True))
+    updated_competition=db.query(Competition).filter(Competition.id == id).first()
+    if request.name:
+        updated_competition.name = request.name
+    if request.status:
+        updated_competition.status = request.status
+    if request.description:
+        updated_competition.description = request.description
     db.commit()
-    
-    updated_competition = db.query(Competition).filter(Competition.id == id).first()
     return updated_competition
 
 

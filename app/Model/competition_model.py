@@ -3,6 +3,7 @@ from sqlalchemy import Column, String, ForeignKey
 from app.Model.user_model import User
 from app.utils.model import Commonmodel
 import uuid
+from sqlalchemy.orm import relationship
 
 def generate_uuid():
     return str(uuid.uuid4())
